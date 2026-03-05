@@ -9,11 +9,11 @@ export const cardSchema = z.object({
 
 
 export const personajeSchema = cardSchema.extend({
-    films: z.string(),
-    shortFilms : z.string().optional(),
-    tvShows : z.string().optional(),
-    videoGames : z.string(),
-    parkAttractions : z.string().optional(),
+    films: z.array(z.string()).optional(),
+    shortFilms : z.array(z.string()).optional(),
+    tvShows : z.array(z.string()).optional(),
+    videoGames : z.array(z.string()).optional(),
+    parkAttractions : z.array(z.string()).optional(),
 })
 
 export type card = z.infer <typeof cardSchema>;
