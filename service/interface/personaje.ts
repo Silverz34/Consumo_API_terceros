@@ -15,3 +15,6 @@ export const personajeSchema = cardSchema.extend({
     videoGames : z.string(),
     parkAttractions : z.string().optional(),
 })
+
+export type card = z.infer <typeof cardSchema>;
+export type personaje = z.infer <typeof personajeSchema>;
