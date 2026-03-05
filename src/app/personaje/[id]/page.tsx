@@ -33,7 +33,7 @@ export default function DetallePersonaje() {
 
   return (
    <main className="dark:bg-black h-screen w-full  flex flex-col md:flex-row overflow-hidden relative">
-      <Link href="/" className="absolute top-6 left-6 z-10 px-5 py-2 bg-black backdrop-blur-sm rounded-full text-white font-bold">
+      <Link href="/" className="absolute top-6 left-6 z-10 px-5 py-2 backdrop-blur-sm rounded-full text-white font-bold">
         Volver
       </Link>
       <div className="md:w-1/2 h-64 md:h-full">
@@ -73,13 +73,25 @@ export default function DetallePersonaje() {
           <div className="p-6 rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-xl font-bold border-b pb-3 mb-4">Shows de TV </h3>
             {datosPersonaje.tvShows && datosPersonaje.tvShows.length > 0 ? (
-              <ul className="list-disc list-inside text-gray-600 space-y-1">
+              <ul className="list-disc list-inside space-y-1">
                 {datosPersonaje.tvShows.map((show, index) => (
                   <li key={index}>{show}</li>
                 ))}
               </ul>
             ) : (
               <p className="text-gray-400 italic">No tiene shows de TV.</p>
+            )}
+          </div>
+          <div className="p-6 rounded-2xl shadow-sm border border-gray-100">
+            <h3 className="text-xl font-bold border-b pb-3 mb-4">parques de atraccion </h3>
+            {datosPersonaje.parkAttractions && datosPersonaje.parkAttractions.length > 0 ? (
+              <ul className="list-disc list-inside space-y-1">
+                {datosPersonaje.parkAttractions.map((show, index) => (
+                  <li key={index}>{show}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-400 italic">No tiene parques de atraccion.</p>
             )}
           </div>
         </div>
