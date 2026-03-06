@@ -8,11 +8,20 @@ export default function DetallePersonaje() {
   const params = useParams();
   const id = params.id as string;
   const { datosPersonaje, cargando, error } = usePersonajeId(id);
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-zinc-50">
+        <h1 className="text-2xl text-red-600 font-bold">Error: {error.message}</h1>
+      </div>
+    );
+  }
+  
   if (cargando || !datosPersonaje) {return(
     <div className="min-h-screen flex items-center justify-center">
       <Loading />
     </div>
   );}
+
   const imagenPorDefecto = "/descargar.jpeg"; 
   const srcImagen = datosPersonaje.imageUrl && datosPersonaje.imageUrl.trim() !== "" 
     ? datosPersonaje.imageUrl 

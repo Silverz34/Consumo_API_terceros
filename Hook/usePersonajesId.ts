@@ -12,7 +12,7 @@ export const usePersonajeId = (id: string | string[]) => {
       setError(null);
 
       try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api/personajes";
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
         const respuesta = await fetch(`${API_URL}/${id}`);
 
         if (!respuesta.ok) {

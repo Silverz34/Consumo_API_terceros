@@ -5,6 +5,13 @@ import Loading from "./loading";
 
 export default function Home() {
   const { personajes, cargando, error } = usePersonajes();
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-zinc-50">
+        <h1 className="text-2xl text-red-600 font-bold">Error: {error.message}</h1>
+      </div>
+    );
+  }
   if (cargando) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-black">
