@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link"; 
 import { personaje } from "../../../../service/interface/personaje"; 
 import { getId } from "../../../../service/service";
+import Loading from "@/app/loading";
 
 export default function DetallePersonaje() {
   const params = useParams();
@@ -25,7 +26,11 @@ export default function DetallePersonaje() {
         }
     }, [id]);
 
-  if (!datosPersonaje) return null;
+  if (!datosPersonaje) {return(
+    <div className="min-h-screen flex items-center justify-center">
+        <Loading />
+      </div>
+  );}
   const imagenPorDefecto = "/descargar.jpeg"; 
   const srcImagen = datosPersonaje.imageUrl && datosPersonaje.imageUrl.trim() !== "" 
     ? datosPersonaje.imageUrl 

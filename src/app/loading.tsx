@@ -1,7 +1,7 @@
 
 export default function Loading() {
   return (
-    <div className="flex flex-col justify-center items-center min-h-[60vh]">
+    <div className="flex flex-col justify-center items-center min-h-screen">
       <video 
         src="https://v1.pinimg.com/videos/mc/720p/af/f7/14/aff7145be641f28d64ec960cfdfa863c.mp4" 
         autoPlay   
