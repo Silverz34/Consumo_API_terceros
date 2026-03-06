@@ -13,7 +13,8 @@ export const usePersonajes = () => {
         const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
         const respuesta = await fetch(API_URL);
         if (!respuesta.ok) {
-          throw new Error(`Error HTTP: ${respuesta.status}`);
+          const errorDelBackend = await respuesta.json();
+          throw new Error(errorDelBackend.message);
         }
 
         const json = await respuesta.json();

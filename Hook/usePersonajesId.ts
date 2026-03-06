@@ -16,7 +16,8 @@ export const usePersonajeId = (id: string | string[]) => {
         const respuesta = await fetch(`${API_URL}/${id}`);
 
         if (!respuesta.ok) {
-          throw new Error(`Error al buscar el personaje: ${respuesta.status}`);
+          const errorDelBackend = await respuesta.json();
+          throw new Error(errorDelBackend.message);
         }
 
         const json = await respuesta.json();
