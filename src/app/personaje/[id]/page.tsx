@@ -14,13 +14,12 @@ export default function DetallePersonaje() {
     useEffect(() => {
         const cargarDetalle = async () => {
         try {
-            const datos = await getId(id as string);
-            const personajeFinal = Array.isArray(datos) ? datos[0] : datos;
-            setDatosPersonaje(personajeFinal);
+          const datos = await getId(id as string);
+          const personajeFinal = Array.isArray(datos) ? datos[0] : datos;
+          setDatosPersonaje(personajeFinal);
         } catch (err) {
-            console.error("No se pudo cargar el personaje:", err);
-        }
-        };
+          console.error("No se pudo cargar el personaje:", err);
+        }};
         if (id) {
         cargarDetalle();
         }
@@ -37,15 +36,15 @@ export default function DetallePersonaje() {
     : imagenPorDefecto;
 
   return (
-   <main className="dark:bg-black h-screen w-full  flex flex-col md:flex-row overflow-hidden relative">
+   <main className="dark:bg-black h-screen w-full flex p-4 flex-col md:flex-row overflow-hidden relative">
       <Link href="/" className="absolute top-6 left-6 z-10 px-5 py-2 backdrop-blur-sm rounded-full text-white font-bold">
         Volver
       </Link>
-      <div className="md:w-1/2 h-64 md:h-full">
+      <div className="md:w-1/2 h-64 md:h-full flex items-center justify-center">
         <img 
           src={srcImagen} 
           alt={datosPersonaje.name} 
-          className="w-full p-20 h-full object-cover"
+          className="w-full max-h-full object-contain"
         />
       </div>
       <div className="md:w-1/2 h-full p-10 md:p-20 overflow-y-auto ">
