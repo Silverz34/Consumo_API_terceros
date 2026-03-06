@@ -1,13 +1,27 @@
-import { Suspense } from "react";
+'use client'
 import PersonajeCard from "@/components/Card"; 
-import { fetch as fetchpersonaje } from "../../service/service";
+import { usePersonajes } from "../../Hook/usePersonaje";
 import Loading from "./loading";
+import ErrorBoundary from "./error";
 
-export const dynamic = 'force-dynamic';
-export default async function Home() {
-  const personajes = await fetchpersonaje();
-  return (
-    <Suspense fallback={<Loading/>}>
+export default function Home() {
+  const { personajes, cargando, error } = usePersonajes();
+  if (error) {
+    return (
+      <ErrorBoundary 
+        error={error} 
+        reset={() => window.location.reload()} 
+      />
+  );}
+  
+  if (cargando) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-black">
+        <Loading />
+      </div>
+    );
+  }
+ return (
     <main className="min-h-screen bg-zinc-50 p-8 dark:bg-black">
       <div className="grid grid-cols-3 gap-6">
         {personajes.map((personajeActual) => (
@@ -18,6 +32,5 @@ export default async function Home() {
         ))}
       </div>
     </main>
-    </Suspense>
   );
 }

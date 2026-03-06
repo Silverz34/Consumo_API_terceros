@@ -1,4 +1,4 @@
-import { card } from "../../service/interface/personaje";
+import { card } from "../../Hook/interface/personaje";
 import Link from "next/link";
 interface props{
     personaje : card
