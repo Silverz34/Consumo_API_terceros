@@ -1,34 +1,17 @@
 "use client";
-
-import { useState, useEffect } from "react";
 import { useParams } from "next/navigation"; 
 import Link from "next/link"; 
-import { personaje } from "../../../../service/interface/personaje"; 
-import { getId } from "../../../../service/service";
 import Loading from "@/app/loading";
+import { usePersonajeId } from "../../../../Hook/usePersonajesId";
 
 export default function DetallePersonaje() {
   const params = useParams();
-  const id = params.id;
-  const [datosPersonaje, setDatosPersonaje] = useState<personaje | null>(null);
-    useEffect(() => {
-        const cargarDetalle = async () => {
-        try {
-          const datos = await getId(id as string);
-          const personajeFinal = Array.isArray(datos) ? datos[0] : datos;
-          setDatosPersonaje(personajeFinal);
-        } catch (err) {
-          console.error("No se pudo cargar el personaje:", err);
-        }};
-        if (id) {
-        cargarDetalle();
-        }
-    }, [id]);
-
-  if (!datosPersonaje) {return(
+  const id = params.id as string;
+  const { datosPersonaje, cargando, error } = usePersonajeId(id);
+  if (cargando || !datosPersonaje) {return(
     <div className="min-h-screen flex items-center justify-center">
-        <Loading />
-      </div>
+      <Loading />
+    </div>
   );}
   const imagenPorDefecto = "/descargar.jpeg"; 
   const srcImagen = datosPersonaje.imageUrl && datosPersonaje.imageUrl.trim() !== "" 

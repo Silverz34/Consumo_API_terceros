@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { card } from "../service/interface/personaje";
+import { card } from "./interface/personaje";
 
 export const usePersonajes = () => {
 
