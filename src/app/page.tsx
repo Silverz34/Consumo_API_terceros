@@ -3,6 +3,7 @@ import PersonajeCard from "@/components/Card";
 import { fetch as fetchpersonaje } from "../../service/service";
 import Loading from "./loading";
 
+export const dynamic = 'force-dynamic';
 export default async function Home() {
   const personajes = await fetchpersonaje();
   return (
