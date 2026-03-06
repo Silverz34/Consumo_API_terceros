@@ -2,16 +2,18 @@
 import PersonajeCard from "@/components/Card"; 
 import { usePersonajes } from "../../Hook/usePersonaje";
 import Loading from "./loading";
+import ErrorBoundary from "./error";
 
 export default function Home() {
   const { personajes, cargando, error } = usePersonajes();
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-50">
-        <h1 className="text-2xl text-red-600 font-bold">Error: {error.message}</h1>
-      </div>
-    );
-  }
+      <ErrorBoundary 
+        error={error} 
+        reset={() => window.location.reload()} 
+      />
+  );}
+  
   if (cargando) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-zinc-50 dark:bg-black">

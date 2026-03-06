@@ -3,18 +3,21 @@ import { useParams } from "next/navigation";
 import Link from "next/link"; 
 import Loading from "@/app/loading";
 import { usePersonajeId } from "../../../../Hook/usePersonajesId";
+import ErrorBoundary from "@/app/error";
 
 export default function DetallePersonaje() {
   const params = useParams();
   const id = params.id as string;
   const { datosPersonaje, cargando, error } = usePersonajeId(id);
+
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-50">
-        <h1 className="text-2xl text-red-600 font-bold">Error: {error.message}</h1>
-      </div>
-    );
-  }
+      <ErrorBoundary 
+        error={error} 
+        reset={() => window.location.reload()} 
+    />
+  );}
+    
   
   if (cargando || !datosPersonaje) {return(
     <div className="min-h-screen flex items-center justify-center">
